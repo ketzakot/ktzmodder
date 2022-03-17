@@ -1,29 +1,3 @@
- { WAConnection } = require('@adiwajshing/baileys');
-const fs = require('fs');
-
-async function iniciar () { 
-        const client = new WAConnection()
-
-        client.logger.level = 'warn'
-
-        client.on('qr', () => {
-        })
-
-        fs.existsSync('./ketzaOFC.json') && client.loadAuthInfo('./ketzaOFC.json')
-
-        client.on('connecting', () => {
-        console.log('Conectando')
-        })
-
-        client.on('open', () => {
-        console.log('Conectado exitosamente :D')
-        })
-        await client.connect({timeoutMs: 30*1000})
-        fs.writeFileSync('./ketzaOFC.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
-        }
-
-iniciar ()
-.catch (err => console.log("unexpected error: " + err))
 const { WAConnection, MessageType } = require('@adiwajshing/baileys');
 const fs = require('fs');
 const prefix = '.'
@@ -38,7 +12,7 @@ async function iniciar () {
         })
 
 //crear un archivo Json para guardar información: ID del cliente, Token y Keys del cliente y del SERVER.
-        fs.existsSync('./package.jsonson') && client.loadAuthInfo('./package.jsonson')
+        fs.existsSync('./Ketza.json') && client.loadAuthInfo('./Ketza.json')
 
 //Conectando o reconectando
         client.on('connecting', () => {
@@ -50,7 +24,7 @@ async function iniciar () {
         console.log('Conectado exitosamente :D')
         })
         await client.connect({timeoutMs: 30*1000})
-        fs.writeFileSync('./package.jsonson', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
+        fs.writeFileSync('./Ketza.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
         
 
 client.on('chat-update', async (ketzaOFC.) => {
@@ -59,7 +33,7 @@ if (!ketzaOFC.hasNewMessage) return
 if (!ketzaOFC.messages) return
 if (ketzaOFC.key && ketzaOFC.key.remoteJid == 'status@broadcast') return
 
-sam = ketzaOFC.messages.all()[0]
+ketzaOFC = ketzaOFC.messages.all()[0]
 if (!ketzaOFC.message) return
 global.blocked
 ketzaOFC.message = (Object.keys(ketzaOFC.message)[0] === 'ephemeralMessage') ? ketzaOFC.message.ephemeralMessage.message : ketzaOFC.message
@@ -105,7 +79,7 @@ const pushname = ketzaOFC.key.fromMe ? client.user.name : conts.notify || conts.
 switch (command) {
 
 case 'bot':
-client.sendMessage(from, 'Hola,felicidades, has logrado enviar un mensaje mediante un servidor externo😚', text, {quoted : sam})
+client.sendMessage(from, 'Hola,felicidades, has logrado enviar un mensaje mediante un servidor externo😚', text, {quoted : ketzaOFC})
 break
                 
 }
@@ -117,4 +91,4 @@ console.log(e)}
 })      
 }
 iniciar ()
-.catch (err => console.log("unexpected error: " + err))a
+.catch (err => console.log("unexpected error: " + err))
