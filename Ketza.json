@@ -4,7 +4,7 @@
   "description": "",
   "main": "botmodder.js",
   "scripts": {
-  "start": "node botmodder.js"
+  "start": "node ketza.js"
   },
   "dependencies": {
     "@adiwajshing/baileys": "^3.4.1"
